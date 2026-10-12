@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +25,8 @@ import java.text.NumberFormat
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.TextField
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +61,12 @@ fun TipTimeLayout() {
                 .align(alignment = Alignment.Start)
         )
 
+        EditNumberField(
+            modifier = Modifier
+                .padding(bottom = 32.dp)
+                .fillMaxWidth()
+        )
+
         Text(
             text = stringResource(R.string.tip_amount, "$0.00"),
             style = MaterialTheme.typography.displaySmall
@@ -69,6 +76,18 @@ fun TipTimeLayout() {
     }
 }
 
+@Composable
+fun EditNumberField(modifier: Modifier = Modifier) {
+    val amountInput = "0"
+
+    TextField(
+        value = amountInput,
+        onValueChange = {},
+        modifier = modifier
+    )
+}
+
+
 private fun calculateTip(
     amount: Double,
     tipPercent: Double = 15.0
@@ -77,3 +96,10 @@ private fun calculateTip(
     return NumberFormat.getCurrencyInstance().format(tip)
 }
 
+@Preview(showBackground = true)
+@Composable
+fun TipTimeLayoutPreview() {
+    TipTimeTheme {
+        TipTimeLayout()
+    }
+}

@@ -26,6 +26,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.TextField
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,11 +82,11 @@ fun TipTimeLayout() {
 
 @Composable
 fun EditNumberField(modifier: Modifier = Modifier) {
-    val amountInput = "0"
+    var amountInput by remember { mutableStateOf("") }
 
     TextField(
         value = amountInput,
-        onValueChange = {},
+        onValueChange = { amountInput = it },
         modifier = modifier
     )
 }

@@ -38,6 +38,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.material3.Switch
 import androidx.compose.ui.res.painterResource
+import androidx.annotation.VisibleForTesting
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -191,7 +192,8 @@ fun RoundTheTipRow(
     }
 }
 
-private fun calculateTip(
+@VisibleForTesting
+internal fun calculateTip(
     amount: Double,
     tipPercent: Double = 15.0,
     roundUp: Boolean
@@ -204,6 +206,8 @@ private fun calculateTip(
 
     return NumberFormat.getCurrencyInstance().format(tip)
 }
+
+
 @Preview(showBackground = true)
 @Composable
 fun TipTimeLayoutPreview() {
